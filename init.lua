@@ -818,7 +818,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    priority = 0, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
@@ -830,6 +830,30 @@ require('lazy').setup({
     end,
   },
 
+  {
+    '0xstepit/flow.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      require('flow').setup_options {
+        transparent = true,
+        fluo_color = 'pink',
+        mode = 'normal',
+        aggressive_spell = false,
+      }
+      vim.cmd 'colorscheme flow'
+    end,
+  },
+
+  -- Apenas Oil.nvim
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+  },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
